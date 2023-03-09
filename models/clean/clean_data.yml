@@ -1,0 +1,32 @@
+version: 2
+
+models:
+  - name: clean_orders
+    columns:
+      - name: CUSTOMER_ID
+        tests:
+          - unique
+          - not_null
+      - name: ORDER_ID
+        tests:
+          - unique
+          - not_null
+      - name: ORDER_STATUS
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['delivered']
+      - name: ORDER_PURCHASE_TIMESTAMP
+        tests:
+          - not_null
+  - name: clean_products
+    columns:
+      - name: ORDER_ID
+        tests:
+          - not_null
+      - name: PRODUCT_ID
+        tests:
+          - not_null
+      - name: ORDER_PURCHASE_TIMESTAMP
+        tests:
+          - not_null
