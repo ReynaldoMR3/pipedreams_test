@@ -1,0 +1,36 @@
+version: 2
+
+models:
+  - name: daily_metrics
+    columns:
+      - name: order_purchase_date
+        tests:
+          - unique
+          - not_null
+          - dbt_expectations.expect_column_to_exist
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: date
+      - name: orders_count
+        tests:
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: number
+      - name: customers_making_orders_count
+        tests:
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: number
+      - name: revenue_usd
+        tests:
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: number
+      - name: average_revenue_per_order_usd
+        tests:
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: number
+      - name: top_3_product_categories_by_revenue
+        tests:
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: array
+      - name: top_3_product_categories_revenue_percentage
+        tests:
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: array
